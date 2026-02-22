@@ -44,6 +44,17 @@ Update this file as you complete tasks. See [TEAM_PLAN.md](TEAM_PLAN.md) for ful
 - **Three versions:** **v1** (original, LSTM on raw price — broken), **v2** (fix: LSTM returns + scaling), **v3** (improvement: + volume, volatility). Working notebook is `notebooks/Crypto_Colab_AllInOne_v3.ipynb`. v1 and v2 live in `notebooks/archive/`; when you start v4, move v3 to archive and create v4.
 - **Docs:** `notebooks/README.md` has the version history table and archive contents.
 
+### AllInOne v4 (ETH) and v5 (XRP) (2026-02-22)
+- **v4_ETH:** `Crypto_Colab_AllInOne_v4_ETH.ipynb` — same pipeline as v3, data = ETH-USD; cache `ETH_USD_daily.parquet`. Run on Colab to compare MAE/RMSE/Dir.Acc to BTC.
+- **v5_XRP:** `Crypto_Colab_AllInOne_v5_XRP.ipynb` — same pipeline, data = XRP-USD (Ripple); cache `XRP_USD_daily.parquet`. Run to compare to BTC/ETH.
+
+### Colab run — ETH (v4) results (2026-02-22)
+- Ran v4_ETH on Colab. **Results:** LSTM MAE 86.02, RMSE 121.52, **Dir.Acc 51.5%**; Lag+Ridge **Dir.Acc 53.4%** (best directional so far); 7-day MA 51.0%. Last value best on MAE/RMSE (82.53 / 118.77). **Vs BTC (v3):** ETH shows slightly better direction (Lag+Ridge 53.4% vs ~49.7% on BTC; LSTM 51.5% vs ~51% on BTC)—same pipeline, ETH a bit more predictable for direction.
+
+### Colab run — XRP (v5) results (2026-02-22)
+- Ran v5_XRP on Colab. **Results:** LSTM MAE 0.089, RMSE 0.128, **Dir.Acc 50.0%** (no edge); 7-day MA **52.1%**, Lag+Ridge **51.5%**. On XRP the LSTM did not add directional value; simpler models (7-day MA, Lag+Ridge) slightly above random. Last value best on MAE/RMSE (XRP price ~$0.5–2 so errors in dollars are small).
+- **Cross-asset:** BTC ~51% LSTM; ETH best (Lag 53.4%, LSTM 51.5%); XRP LSTM 50%. **Moving focus to ETH** for report/next steps (best directional results with same pipeline).
+
 ### Colab run with volume + volatility (AllInOne copy)
 - Ran full pipeline (data, baselines, Lag+Ridge + volume/volatility, LSTM + volume/volatility) on Colab. **Results:** LSTM MAE 1599.64, RMSE 2208.82, **Dir.Acc 0.510** (above random). Lag+Ridge Dir.Acc 0.497. Volume and volatility features give a small directional lift; MAE/RMSE in line with previous runs.
 
@@ -115,4 +126,4 @@ Update this file as you complete tasks. See [TEAM_PLAN.md](TEAM_PLAN.md) for ful
 
 ---
 
-*Last updated: 2026-02-22 (AllInOne v1 / v2 / v3: original, fix, improvement.)*
+*Last updated: 2026-02-22 (XRP v5 results; focus moving to ETH.)*
