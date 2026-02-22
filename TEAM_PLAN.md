@@ -118,6 +118,3 @@ Goal: finish in **3 weeks**, use **Week 4 as buffer** before the due date.
 - [ ] Ablation with extra/derived features
 - [ ] Report + slides + reproducible code
 
----
-
-**Tip:** Assign names to the Owner column and set concrete “by when” dates (e.g. “Phase 1 done by Feb 28”) so everyone stays on track.
