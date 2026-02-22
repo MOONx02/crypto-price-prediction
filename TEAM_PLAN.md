@@ -105,17 +105,17 @@ Goal: finish in **3 weeks**, use **Week 4 as buffer** before the due date.
 
 ## Course requirements checklist
 
-- [ ] Baseline + at least two improved models (e.g. lag model, LSTM)
-- [ ] Time-based split only; no shuffle
-- [ ] ColumnTransformer + Pipeline
+- [x] Baseline + at least two improved models (e.g. lag model, LSTM)
+- [x] Time-based split only; no shuffle
+- [x] ColumnTransformer + Pipeline
 - [ ] RandomizedSearchCV (or Bayesian) with time-series CV
 - [ ] Error analysis: residual plots + where model fails
 - [ ] Interpretability: permutation importance + one of SHAP / PDP / ICE
-- [ ] Two baselines (last value, moving average)
+- [x] Two baselines (last value, moving average)
 - [ ] Rolling backtest
-- [ ] MAE or RMSE + directional accuracy
-- [ ] LSTM compared to baselines and lag model
-- [ ] Ablation with extra/derived features
+- [x] MAE or RMSE + directional accuracy
+- [x] LSTM compared to baselines and lag model
+- [x] Ablation with extra/derived features (volume, rolling volatility in AllInOne v3)
 - [ ] Report + slides + reproducible code
 
 ---

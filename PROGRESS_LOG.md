@@ -108,7 +108,7 @@ Update this file as you complete tasks. See [TEAM_PLAN.md](TEAM_PLAN.md) for ful
 - [ ] RandomizedSearchCV (or Bayesian) with time-series CV
 - [ ] Rolling backtest
 - [x] LSTM compared to baselines and lag model
-- [ ] Ablation with extra/derived features
+- [x] Ablation with extra/derived features (volume, volatility in v3)
 - [ ] Error analysis: residual plots + where model fails
 - [ ] Interpretability: permutation importance + one of SHAP / PDP / ICE
 - [ ] Report + slides + reproducible code
