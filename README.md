@@ -20,9 +20,11 @@ pip install -r requirements.txt
 - **Source:** e.g. Yahoo Finance via `yfinance`. See notebook for download and date range.
 - **Storage:** Save raw or processed series in `data/` (folder is gitignored by default; add a small sample to repo or document download steps in the notebook).
 
-## Running on Google Colab
+## Running on Google Colab (easiest)
 
-For faster runs (and free GPU for the LSTM), see **[COLAB.md](COLAB.md)**. In short: clone the repo in Colab, `pip install -r requirements.txt`, then open **notebooks/00_colab_setup.ipynb** first, and from the file browser open 01 → 02 → 03.
+**Upload one file and run:** Use ** [notebooks/Crypto_Colab_AllInOne.ipynb](notebooks/Crypto_Colab_AllInOne.ipynb)**. In Colab: **File → Upload notebook**, choose that file, then **Runtime → Run all**. No git, no clone, no paths. (Optional: Runtime → Change runtime type → GPU for faster LSTM.)
+
+Alternatively, see [COLAB.md](COLAB.md) for clone-based setup.
 
 ## Reproducing results
 
