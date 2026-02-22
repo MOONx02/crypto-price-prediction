@@ -24,7 +24,7 @@ Update this file as you complete tasks. See [TEAM_PLAN.md](TEAM_PLAN.md) for ful
 - [x] **1.5** Baseline 2: 7-day moving average on test set
 - [x] **1.6** Metrics: `src.metrics.regression_metrics()` → MAE, RMSE, directional accuracy
 
-**Deliverable:** Data loaded, two baselines run, three metrics on test set. ✅
+**Deliverable:** Data loaded, two baselines run, three metrics on test set. 
 
 ### Colab run and LSTM fix (2026-02-22)
 - Ran full pipeline in Colab (Copy_of_Crypto_Colab_AllInOne). **Findings:** Last value was best (MAE ~1585, RMSE ~2210). Lag+Ridge and 7-day MA were worse; directional accuracy ~49% (random). LSTM was broken: MAE/RMSE ~97k (predicting raw price without scaling).
