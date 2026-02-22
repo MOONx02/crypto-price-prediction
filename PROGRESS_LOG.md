@@ -40,6 +40,18 @@ Update this file as you complete tasks. See [TEAM_PLAN.md](TEAM_PLAN.md) for ful
 - **LSTM:** Sequences are 3-channel: (return, log_volume, volatility_14) per timestep; input shape `(SEQ_LEN, 3)`; scaling on all three. Printed as "LSTM (+ volume, volatility_14, predict returns → price)".
 - Re-run on Colab to compare metrics (ablation: with vs without these features).
 
+### AllInOne versioning (2026-02-22)
+- **Three versions:** **v1** (original, LSTM on raw price — broken), **v2** (fix: LSTM returns + scaling), **v3** (improvement: + volume, volatility). Working notebook is `notebooks/Crypto_Colab_AllInOne_v3.ipynb`. v1 and v2 live in `notebooks/archive/`; when you start v4, move v3 to archive and create v4.
+- **Docs:** `notebooks/README.md` has the version history table and archive contents.
+
+### Colab run with volume + volatility (AllInOne copy)
+- Ran full pipeline (data, baselines, Lag+Ridge + volume/volatility, LSTM + volume/volatility) on Colab. **Results:** LSTM MAE 1599.64, RMSE 2208.82, **Dir.Acc 0.510** (above random). Lag+Ridge Dir.Acc 0.497. Volume and volatility features give a small directional lift; MAE/RMSE in line with previous runs.
+
+### Cleanup: names and duplicates (2026-02-22)
+- **Removed:** `notebooks/Crypto_Colab_AllInOne copy.ipynb`; from 211 root: `Crypto_Colab_AllInOne_copy.ipynb`, `Crypto_Colab_AllInOne (1).ipynb`, `Crypto_Colab_AllInOne (2).ipynb`.
+- **Renamed in archive:** `Copy_of_Crypto_Colab_AllInOne.ipynb` → `Crypto_Colab_AllInOne_legacy.ipynb`.
+- **Saved in archive:** Colab run (51% Dir.Acc) as `archive/Crypto_Colab_AllInOne_v1_colab_run.ipynb`. Single working notebook: `notebooks/Crypto_Colab_AllInOne_v1.ipynb`.
+
 ---
 
 ## What we need to do
@@ -103,4 +115,4 @@ Update this file as you complete tasks. See [TEAM_PLAN.md](TEAM_PLAN.md) for ful
 
 ---
 
-*Last updated: 2026-02-22 (Volume + rolling volatility in AllInOne: data, lag model, LSTM.)*
+*Last updated: 2026-02-22 (AllInOne v1 / v2 / v3: original, fix, improvement.)*
