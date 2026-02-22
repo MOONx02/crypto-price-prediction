@@ -1,0 +1,15 @@
+---
+description: Update the project progress log when making significant changes
+alwaysApply: true
+---
+
+# Progress log discipline
+
+When you complete or change something meaningful in this project, update **PROGRESS_LOG.md**:
+
+1. **Add an entry** under **"What we did"** (e.g. a new subsection with date): what was done, what was found, and what was decided.
+2. **Update** the **"Last updated"** line at the bottom with the date and a short note.
+
+Do this for things like: new features, model fixes, Colab runs and findings, refactors (e.g. moving notebooks to archive), pipeline changes, or decisions that affect the report/plan. Small typos or dependency bumps don’t require a log entry.
+
+This keeps the log accurate even when the user doesn’t ask you to update it.

@@ -4,6 +4,8 @@
 
 Update this file as you complete tasks. See [TEAM_PLAN.md](TEAM_PLAN.md) for full phase breakdown and owners.
 
+**Log discipline:** When you (or the AI) make significant changes—new features, refactors, Colab runs, model fixes—add a short entry under **What we did** and update **Last updated** at the bottom. That way the log stays current even if you don’t remember to ask.
+
 ---
 
 ## What we did
@@ -23,6 +25,10 @@ Update this file as you complete tasks. See [TEAM_PLAN.md](TEAM_PLAN.md) for ful
 - [x] **1.6** Metrics: `src.metrics.regression_metrics()` → MAE, RMSE, directional accuracy
 
 **Deliverable:** Data loaded, two baselines run, three metrics on test set. ✅
+
+### Colab run and LSTM fix (2026-02-22)
+- Ran full pipeline in Colab (Copy_of_Crypto_Colab_AllInOne). **Findings:** Last value was best (MAE ~1585, RMSE ~2210). Lag+Ridge and 7-day MA were worse; directional accuracy ~49% (random). LSTM was broken: MAE/RMSE ~97k (predicting raw price without scaling).
+- **Actions:** (1) Archived original notebooks `01_data_and_baselines`, `02_lag_model`, `03_lstm` to `notebooks/archive/`. (2) Fixed `Crypto_Colab_AllInOne.ipynb`: LSTM now predicts **returns** (not raw price), input sequences are **StandardScaler**-scaled, then predicted return is converted back to price for the comparison table. Ready to re-run on Colab for a fair LSTM vs baselines comparison.
 
 ---
 
@@ -87,4 +93,4 @@ Update this file as you complete tasks. See [TEAM_PLAN.md](TEAM_PLAN.md) for ful
 
 ---
 
-*Last updated: 2026-02-22*
+*Last updated: 2026-02-22 (Colab findings, archive 01–03, LSTM return+scale fix)*
