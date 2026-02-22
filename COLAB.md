@@ -4,25 +4,56 @@ Use Colab for faster CPU/GPU and to run the notebooks in the cloud. Data can be 
 
 ---
 
+## If your repo is private
+
+Colab can’t clone a private repo without authentication. Use one of these:
+
+**Option A – GitHub Personal Access Token (recommended)**  
+1. On GitHub: **Settings → Developer settings → Personal access tokens** (or [github.com/settings/tokens](https://github.com/settings/tokens)). Generate a token with `repo` scope.  
+2. In Colab: open the **🔑 Secrets** panel in the left sidebar (key icon). Add a secret: name **`GITHUB_TOKEN`**, value = your token.  
+3. Use **00_colab_setup.ipynb** as usual; the first cell will use this token to clone the private repo.
+
+**Option B – Drive + ZIP (no token)**  
+1. On your machine (or GitHub): download the repo as ZIP (e.g. **Code → Download ZIP** on the repo page, or `git archive`).  
+2. Upload the ZIP to Google Drive (e.g. in a folder `crypto-price-prediction`).  
+3. In a Colab notebook run once:
+   ```python
+   from google.colab import drive
+   drive.mount('/content/drive')
+   !unzip -q "/content/drive/MyDrive/path/to/crypto-price-prediction-main.zip" -d /content
+   %cd /content/crypto-price-prediction-main
+   !pip install -q -r requirements.txt
+   ```
+   Then open `notebooks/01_data_and_baselines.ipynb` from the file browser. (Update the ZIP path to match your Drive.)
+
+---
+
 ## Quick start (every new session)
 
-In a **new Colab notebook**, run these two cells once:
+In a **new Colab notebook**, run the two cells in **00_colab_setup.ipynb** (or the snippets below). The clone cell uses your **GITHUB_TOKEN** secret if the repo is private.
 
 ```python
-# Cell 1: Clone the repo and go to project root
-!git clone https://github.com/MOONx02/crypto-price-prediction.git
+# Cell 1: Clone (uses GITHUB_TOKEN from Colab Secrets if set, for private repos)
+try:
+  from google.colab import userdata
+  token = userdata.get('GITHUB_TOKEN')
+  repo = "https://" + token + "@github.com/MOONx02/crypto-price-prediction.git"
+except Exception:
+  repo = "https://github.com/MOONx02/crypto-price-prediction.git"
+import subprocess
+subprocess.run(["git", "clone", "-q", repo], check=True)
 %cd crypto-price-prediction
 ```
 
 ```python
-# Cell 2: Install dependencies (Colab has many already; this adds yfinance, pyarrow, shap, etc.)
+# Cell 2: Install dependencies
 !pip install -q -r requirements.txt
 ```
 
-Then either:
+Then:
 
-- **Option A:** In the Colab file browser (left sidebar), open **crypto-price-prediction → notebooks** and open **01_data_and_baselines.ipynb** (or 02, 03). Run all cells; the project’s `ROOT` logic will find the repo.
-- **Option B:** Copy the contents of each notebook from GitHub into this Colab notebook and run. Keep the clone + pip cells at the top.
+- In the Colab **file browser** (left sidebar 📁), go to **crypto-price-prediction → notebooks** and open **01_data_and_baselines.ipynb** (or 02, 03). Run all cells.
+- **Use the same runtime:** Run 00 first, then open 01 (or 02, 03) from the file browser *without* starting a new session. If you open 01 in a new “Open notebook” tab, the clone from 00 is still in that VM—notebooks 01–03 now detect Colab and use `/content/crypto-price-prediction` so `src` is found.
 
 ---
 
