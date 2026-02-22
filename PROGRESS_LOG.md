@@ -44,9 +44,13 @@ Update this file as you complete tasks. See [TEAM_PLAN.md](TEAM_PLAN.md) for ful
 - **Three versions:** **v1** (original, LSTM on raw price — broken), **v2** (fix: LSTM returns + scaling), **v3** (improvement: + volume, volatility). Working notebook is `notebooks/Crypto_Colab_AllInOne_v3.ipynb`. v1 and v2 live in `notebooks/archive/`; when you start v4, move v3 to archive and create v4.
 - **Docs:** `notebooks/README.md` has the version history table and archive contents.
 
-### AllInOne v4 (ETH) and v5 (XRP) (2026-02-22)
+### AllInOne v4 (ETH), v5 (XRP), v6 (ETC) (2026-02-22)
 - **v4_ETH:** `Crypto_Colab_AllInOne_v4_ETH.ipynb` — same pipeline as v3, data = ETH-USD; cache `ETH_USD_daily.parquet`. Run on Colab to compare MAE/RMSE/Dir.Acc to BTC.
 - **v5_XRP:** `Crypto_Colab_AllInOne_v5_XRP.ipynb` — same pipeline, data = XRP-USD (Ripple); cache `XRP_USD_daily.parquet`. Run to compare to BTC/ETH.
+- **v6_ETC:** `Crypto_Colab_AllInOne_v6_ETC.ipynb` — same pipeline, data = ETC-USD (Ethereum Classic); cache `ETC_USD_daily.parquet`. Run to compare to BTC/ETH/XRP.
+
+### Colab run — ETC (v6) results (2026-02-22)
+- Ran v6_ETC on Colab. **Results:** **7-day MA Dir.Acc 55.3%** (best directional so far); Lag+Ridge 53.7%; LSTM 46.0%. On ETC the simple 7-day MA beats LSTM on direction; LSTM did not help. Last value best MAE/RMSE (0.587 / 0.900). ETC shows more predictable structure for simple models with same pipeline.
 
 ### Colab run — ETH (v4) results (2026-02-22)
 - Ran v4_ETH on Colab. **Results:** LSTM MAE 86.02, RMSE 121.52, **Dir.Acc 51.5%**; Lag+Ridge **Dir.Acc 53.4%** (best directional so far); 7-day MA 51.0%. Last value best on MAE/RMSE (82.53 / 118.77). **Vs BTC (v3):** ETH shows slightly better direction (Lag+Ridge 53.4% vs ~49.7% on BTC; LSTM 51.5% vs ~51% on BTC)—same pipeline, ETH a bit more predictable for direction.
@@ -126,4 +130,4 @@ Update this file as you complete tasks. See [TEAM_PLAN.md](TEAM_PLAN.md) for ful
 
 ---
 
-*Last updated: 2026-02-22 (XRP v5 results; focus moving to ETH.)*
+*Last updated: 2026-02-22 (ETC v6: 7-day MA 55.3% Dir.Acc.)*
