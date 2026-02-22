@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.venv/
+venv/
+env/
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Data (uncomment if you don't want to commit raw data)
+data/*.csv
+data/*.parquet
+data/*.pkl
+
+# IDE
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# Model artifacts (optional)
+*.pkl
+*.joblib
+*.h5
+*.keras
+
+# Reports/slides if generated (optional)
+# docs/*.pdf
