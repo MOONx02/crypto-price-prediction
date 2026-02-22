@@ -17,7 +17,7 @@ Update this file as you complete tasks. See [TEAM_PLAN.md](TEAM_PLAN.md) for ful
 - [x] Updated README with Python 3.11/3.12 setup note
 
 ### Phase 1: Data and baselines (done)
-- [x] **1.1** Data source: yfinance, asset BTC-USD, date range from 2020-01-01
+- [x] **1.1** Data source: yfinance, asset BTC-USD, date range from 2017-01-01
 - [x] **1.2** Data pipeline: download in notebook, clean (ffill, dropna), save/load cache in `data/BTC_USD_daily.parquet`
 - [x] **1.3** Time-based split: 70% train / 15% val / 15% test
 - [x] **1.4** Baseline 1: last value (tomorrow = today) on test set
@@ -29,29 +29,39 @@ Update this file as you complete tasks. See [TEAM_PLAN.md](TEAM_PLAN.md) for ful
 ### Colab run and LSTM fix (2026-02-22)
 - Ran full pipeline in Colab (Copy_of_Crypto_Colab_AllInOne). **Findings:** Last value was best (MAE ~1585, RMSE ~2210). Lag+Ridge and 7-day MA were worse; directional accuracy ~49% (random). LSTM was broken: MAE/RMSE ~97k (predicting raw price without scaling).
 - **Actions:** (1) Archived original notebooks `01_data_and_baselines`, `02_lag_model`, `03_lstm` to `notebooks/archive/`. (2) Fixed `Crypto_Colab_AllInOne.ipynb`: LSTM now predicts **returns** (not raw price), input sequences are **StandardScaler**-scaled, then predicted return is converted back to price for the comparison table. Ready to re-run on Colab for a fair LSTM vs baselines comparison.
+- **Colab re-run (fixed notebook):** Uploaded fixed AllInOne from computer to Colab. **Results:** LSTM MAE 1597.58, RMSE 2202.31, Dir.Acc 0.498 — now in same range as last value (MAE 1585.59, RMSE 2210.14). LSTM RMSE slightly better than last value; directional accuracy still ~50% (random).
+
+### AllInOne notebook: lag model + LSTM (2026-02-22)
+- **Crypto_Colab_AllInOne.ipynb** now includes: (1) Data + baselines (last value, 7-day MA). (2) **Lag model:** 30 price lags, ColumnTransformer(StandardScaler) + Pipeline(Ridge), same 70/15/15 split; metrics on test set. (3) **LSTM:** predicts returns (scaled sequences), convert to price; same test period and metrics. (4) **Comparison table:** Last value, 7-day MA, Lag+Ridge, LSTM with MAE/RMSE/dir. acc. Derived columns (returns, volatility_14, log_volume) are in the dataframe for future ablation; no rolling backtest or TimeSeriesSplit/RandomizedSearchCV in AllInOne yet (those exist in `notebooks/archive/02_lag_model.ipynb`).
+
+### Volume and rolling volatility (2026-02-22)
+- **Data:** In AllInOne, after load: added `ret` (day-over-day return), `volatility_14` (14-day rolling std of returns), `log_volume` (log1p(volume)); volume set to 0 if missing.
+- **Lag model:** Ridge pipeline now includes two extra features per sample: `log_volume` and `volatility_14` at the last-lag time index. Printed as "Lag+Ridge (+ volume, volatility_14)".
+- **LSTM:** Sequences are 3-channel: (return, log_volume, volatility_14) per timestep; input shape `(SEQ_LEN, 3)`; scaling on all three. Printed as "LSTM (+ volume, volatility_14, predict returns → price)".
+- Re-run on Colab to compare metrics (ablation: with vs without these features).
 
 ---
 
 ## What we need to do
 
 ### Phase 2: Lag-feature model and rolling backtest (Week 2)
-- [ ] **2.1** Feature design: lag features (e.g. price lags 1–7 or 1–30), optionally log returns; document in notebook
-- [ ] **2.2** Preprocessing + Pipeline: ColumnTransformer (e.g. StandardScaler) + Pipeline with regression (e.g. Ridge or Gradient Boosting)
+- [x] **2.1** Feature design: lag features (e.g. price lags 1–7 or 1–30), optionally log returns; document in notebook
+- [x] **2.2** Preprocessing + Pipeline: ColumnTransformer (e.g. StandardScaler) + Pipeline with regression (e.g. Ridge or Gradient Boosting)
 - [ ] **2.3** Rolling backtest: train on past only, predict next day, roll forward; no future leakage
 - [ ] **2.4** Time-series CV: TimeSeriesSplit + RandomizedSearchCV; document param grid
 - [ ] **2.5** Evaluation: rolling backtest metrics (MAE, RMSE, dir. acc.), residual plots, short error discussion
 
-**Deliverable:** Lag-feature model with pipeline and rolling backtest; metrics and residual analysis.
+**Deliverable:** Lag-feature model with pipeline and rolling backtest; metrics and residual analysis. *Note: Simple lag+Ridge with pipeline is in AllInOne; rolling backtest and time-series CV still to integrate.*
 
 ---
 
 ### Phase 3: LSTM and comparison (Week 3)
-- [ ] **3.1** LSTM research: how to feed sequences (e.g. last 7–30 days) for next-day prediction (Keras/TF)
-- [ ] **3.2** LSTM implementation: small LSTM (1–2 layers), same train/val/test or rolling window
-- [ ] **3.3** Fair comparison: same test period and metrics as baselines and lag model
-- [ ] **3.4** Results table: Baselines vs Lag vs LSTM; short summary of which model wins on which metric
+- [x] **3.1** LSTM research: how to feed sequences (e.g. last 7–30 days) for next-day prediction (Keras/TF)
+- [x] **3.2** LSTM implementation: small LSTM (1–2 layers), same train/val/test or rolling window
+- [x] **3.3** Fair comparison: same test period and metrics as baselines and lag model
+- [x] **3.4** Results table: Baselines vs Lag vs LSTM; short summary of which model wins on which metric
 
-**Deliverable:** LSTM trained and evaluated; comparison table and short write-up.
+**Deliverable:** LSTM trained and evaluated; comparison table and short write-up. ✅ (In AllInOne.)
 
 ---
 
@@ -81,11 +91,11 @@ Update this file as you complete tasks. See [TEAM_PLAN.md](TEAM_PLAN.md) for ful
 - [x] Two baselines (last value, moving average)
 - [x] Time-based split only; no shuffle
 - [x] MAE / RMSE + directional accuracy
-- [ ] Baseline + at least two improved models (lag model, LSTM)
-- [ ] ColumnTransformer + Pipeline
+- [x] Baseline + at least two improved models (lag model, LSTM)
+- [x] ColumnTransformer + Pipeline
 - [ ] RandomizedSearchCV (or Bayesian) with time-series CV
 - [ ] Rolling backtest
-- [ ] LSTM compared to baselines and lag model
+- [x] LSTM compared to baselines and lag model
 - [ ] Ablation with extra/derived features
 - [ ] Error analysis: residual plots + where model fails
 - [ ] Interpretability: permutation importance + one of SHAP / PDP / ICE
@@ -93,4 +103,4 @@ Update this file as you complete tasks. See [TEAM_PLAN.md](TEAM_PLAN.md) for ful
 
 ---
 
-*Last updated: 2026-02-22 (Colab findings, archive 01–03, LSTM return+scale fix)*
+*Last updated: 2026-02-22 (Volume + rolling volatility in AllInOne: data, lag model, LSTM.)*

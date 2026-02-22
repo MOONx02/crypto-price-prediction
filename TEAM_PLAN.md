@@ -29,12 +29,12 @@ Goal: finish in **3 weeks**, use **Week 4 as buffer** before the due date.
 
 | Task | Description | Owner |
 |------|-------------|--------|
-| 1.1 Data source research | Compare sources (e.g. yfinance BTC-USD, CoinGecko). Pick one source + one asset. Document how to get daily OHLCV and date range. | |
-| 1.2 Data pipeline | Script/notebook: download history, handle missing values, clean DataFrame (date index, price, volume). | |
-| 1.3 Time-based split | Train/validation/test by time (e.g. 70% / 15% / 15%). Document split dates. | |
-| 1.4 Baseline 1 – Last value | Predict tomorrow = today’s price. Compute MAE, RMSE, directional accuracy on test set. | |
-| 1.5 Baseline 2 – Moving average | e.g. 7-day or 30-day MA. Same metrics. | |
-| 1.6 Metrics function | One function: (y_true, y_pred) → MAE, RMSE, directional accuracy. Reuse for all models. | |
+| 1.1 Data source research | Compare sources (e.g. yfinance BTC-USD, CoinGecko). Pick one source + one asset. Document how to get daily OHLCV and date range. | Tae (completed) |
+| 1.2 Data pipeline | Script/notebook: download history, handle missing values, clean DataFrame (date index, price, volume). | Tae (completed) |
+| 1.3 Time-based split | Train/validation/test by time (e.g. 70% / 15% / 15%). Document split dates. | Tae (completed) |
+| 1.4 Baseline 1 – Last value | Predict tomorrow = today’s price. Compute MAE, RMSE, directional accuracy on test set. | Tae (completed) |
+| 1.5 Baseline 2 – Moving average | e.g. 7-day or 30-day MA. Same metrics. | Tae (completed) |
+| 1.6 Metrics function | One function: (y_true, y_pred) → MAE, RMSE, directional accuracy. Reuse for all models. | Tae (completed) |
 
 **Deliverable:** Data loaded, two baselines run, three metrics on test set.
 
@@ -46,8 +46,8 @@ Goal: finish in **3 weeks**, use **Week 4 as buffer** before the due date.
 
 | Task | Description | Owner |
 |------|-------------|--------|
-| 2.1 Feature design | Lag features (e.g. price lags 1–7 or 1–30). Optionally log returns. Document in notebook. | |
-| 2.2 Preprocessing + Pipeline | ColumnTransformer (e.g. StandardScaler) + Pipeline with regression model (e.g. Ridge or Gradient Boosting). | |
+| 2.1 Feature design | Lag features (e.g. price lags 1–7 or 1–30). Optionally log returns. Document in notebook. | Tae (completed) |
+| 2.2 Preprocessing + Pipeline | ColumnTransformer (e.g. StandardScaler) + Pipeline with regression model (e.g. Ridge or Gradient Boosting). | Tae (completed) |
 | 2.3 Rolling backtest | True rolling backtest: train on past only, predict next day, roll forward one day. No future leakage. | |
 | 2.4 Time-series CV | TimeSeriesSplit + RandomizedSearchCV. Document param grid. | |
 | 2.5 Evaluation | Rolling backtest for lag model; MAE, RMSE, directional accuracy; residual plots and short error discussion. | |
@@ -62,10 +62,10 @@ Goal: finish in **3 weeks**, use **Week 4 as buffer** before the due date.
 
 | Task | Description | Owner |
 |------|-------------|--------|
-| 3.1 LSTM research | How to feed sequences (e.g. last 7–30 days) into LSTM for next-day prediction (Keras/TF or PyTorch). | |
-| 3.2 LSTM implementation | Small LSTM (1–2 layers), same train/val/test and rolling or expanding window. | |
-| 3.3 Fair comparison | Same test period and metrics (MAE, RMSE, directional accuracy) as baselines and lag model. | |
-| 3.4 Results table | Table: Baselines vs Lag vs LSTM. Short summary of which model wins on which metric. | |
+| 3.1 LSTM research | How to feed sequences (e.g. last 7–30 days) into LSTM for next-day prediction (Keras/TF or PyTorch). | Tae (completed) |
+| 3.2 LSTM implementation | Small LSTM (1–2 layers), same train/val/test and rolling or expanding window. | Tae (completed) |
+| 3.3 Fair comparison | Same test period and metrics (MAE, RMSE, directional accuracy) as baselines and lag model. | Tae (completed) |
+| 3.4 Results table | Table: Baselines vs Lag vs LSTM. Short summary of which model wins on which metric. | Tae (completed) |
 
 **Deliverable:** LSTM trained and evaluated; comparison table and short write-up.
 
@@ -77,8 +77,8 @@ Goal: finish in **3 weeks**, use **Week 4 as buffer** before the due date.
 
 | Task | Description | Owner |
 |------|-------------|--------|
-| 4.1 Extra features research | Define 2–3 features: volume, rolling volatility, simple indicator (e.g. RSI or MA crossover). Document formulas. | |
-| 4.2 Feature implementation | Add to pipeline; rolling backtest uses only past data. | |
+| 4.1 Extra features research | Define 2–3 features: volume, rolling volatility, simple indicator (e.g. RSI or MA crossover). Document formulas. | Tae (completed) |
+| 4.2 Feature implementation | Add to pipeline; rolling backtest uses only past data. | Tae (completed) |
 | 4.3 Ablation study | Models: (1) lags only, (2) lags + volume, (3) lags + volatility, (4) all. Report MAE/RMSE/directional accuracy. | |
 | 4.4 Ablation summary | Short conclusion: which features help; 1–2 sentences for report. | |
 
