@@ -24,7 +24,9 @@ Update this file as you complete tasks. See [TEAM_PLAN.md](TEAM_PLAN.md) for ful
 - [x] **1.5** Baseline 2: 7-day moving average on test set
 - [x] **1.6** Metrics: `src.metrics.regression_metrics()` → MAE, RMSE, directional accuracy
 
-**Deliverable:** Data loaded, two baselines run, three metrics on test set. 
+**Deliverable:** Data loaded, two baselines run, three metrics on test set.
+
+**Conclusion:** yfinance daily OHLCV (configurable asset, default BTC-USD from 2017), parquet cache, 70/15/15 time split. Last value and 7-day MA establish the benchmark; last value consistently wins on MAE/RMSE across assets; directional accuracy varies by asset (e.g. ETC 7-day MA 55.3%, BTC ~49%).
 
 ### Colab run and LSTM fix (2026-02-22)
 - Ran full pipeline in Colab (Copy_of_Crypto_Colab_AllInOne). **Findings:** Last value was best (MAE ~1585, RMSE ~2210). Lag+Ridge and 7-day MA were worse; directional accuracy ~49% (random). LSTM was broken: MAE/RMSE ~97k (predicting raw price without scaling).
@@ -92,6 +94,8 @@ Update this file as you complete tasks. See [TEAM_PLAN.md](TEAM_PLAN.md) for ful
 
 **Deliverable:** Lag-feature model with pipeline and rolling backtest; metrics and residual analysis. Integrated in `Crypto_Colab_AllInOne_v4.ipynb` (sections 3b–3d).
 
+**Conclusion:** 30 price lags + log_volume + volatility_14, ColumnTransformer(StandardScaler) + Ridge pipeline; rolling backtest (train on past only, predict next day); TimeSeriesSplit(5) + RandomizedSearchCV(alpha). Best-CV model evaluated on test with residual histogram and predicted-vs-actual scatter. Lag+Ridge improves directional accuracy on some assets (e.g. ETH 53.4%, ETC 53.7%) but last value remains best on MAE/RMSE; residuals show heavier tails in volatile regimes.
+
 ---
 
 ### Phase 3: LSTM and comparison (Week 3)
@@ -101,6 +105,8 @@ Update this file as you complete tasks. See [TEAM_PLAN.md](TEAM_PLAN.md) for ful
 - [x] **3.4** Results table: Baselines vs Lag vs LSTM; short summary of which model wins on which metric
 
 **Deliverable:** LSTM trained and evaluated; comparison table and short write-up. (In AllInOne.)
+
+**Conclusion:** LSTM predicts next-day return (sequences of return, log_volume, volatility_14; StandardScaler), then converted to price; same test period and metrics as baselines and Lag+Ridge. Across BTC/ETH/XRP/ETC: LSTM gives a small directional edge on some runs (e.g. BTC 50.5%) but often near 50%; last value remains best on MAE/RMSE. Simple baselines and Lag+Ridge are competitive; LSTM does not dominate.
 
 ---
 
@@ -112,7 +118,7 @@ Update this file as you complete tasks. See [TEAM_PLAN.md](TEAM_PLAN.md) for ful
 
 **Deliverable:** Ablation results and "what helps" for the report. Section 4 in v5 runs ablation.
 
-**Ablation conclusion (for report):** On ETC-USD (and similar runs), **volume** helps directional accuracy most (e.g. lags+volume ~54% Dir.Acc vs lags-only ~52%); **volatility** adds a smaller gain. For MAE/RMSE, **lags-only is best**—adding volume or volatility slightly increases point-forecast error. So the trade-off is: extra features improve *direction* (which feature helps) at a small cost to *magnitude* (MAE/RMSE).
+**Conclusion (for report):** On ETC-USD (and similar runs), **volume** helps directional accuracy most (e.g. lags+volume ~54% Dir.Acc vs lags-only ~52%); **volatility** adds a smaller gain. For MAE/RMSE, **lags-only is best**—adding volume or volatility slightly increases point-forecast error. So the trade-off is: extra features improve *direction* (which feature helps) at a small cost to *magnitude* (MAE/RMSE).
 
 ---
 
@@ -151,4 +157,4 @@ Update this file as you complete tasks. See [TEAM_PLAN.md](TEAM_PLAN.md) for ful
 
 ---
 
-*Last updated: 2026-02-25 (4.4 ablation summary filled in for report)*
+*Last updated: 2026-02-25 (phase conclusions added for Phases 1–4)*
