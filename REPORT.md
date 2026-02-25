@@ -149,12 +149,14 @@ LSTM is between last value and 7-day MA on MAE/RMSE but **below 50%** on directi
 
 ## 5. Cross-asset summary (from project runs)
 
-- **BTC-USD:** Last value best MAE/RMSE; LSTM had a slight directional edge (50.5%); Lag+Ridge and 7-day MA ~49–50%.  
-- **ETH-USD:** Lag+Ridge best direction (53.4%); LSTM 51.5%; last value best MAE/RMSE.  
-- **XRP-USD:** 7-day MA and Lag+Ridge ~51–52% direction; LSTM 50%.  
-- **ETC-USD:** 7-day MA and Lag+Ridge best direction (55.3%, 53.2%); LSTM below 50%.  
+Results below are from the same v6 pipeline run with each asset (notebooks in `notebooks/archive/`).
 
-So directional predictability and which model wins vary by asset; last value remains best on MAE/RMSE; LSTM does not consistently beat simpler models on direction.
+- **BTC-USD:** Last value best MAE/RMSE; LSTM slight directional edge (50.5%); 7-day MA and Lag+Ridge ~49.4–49.8%.  
+- **ETH-USD:** Lag+Ridge best direction (53.7%); LSTM 52.2%; 7-day MA 50.8%; last value best MAE/RMSE.  
+- **XRP-USD:** **LSTM best direction (53.3%)**; 7-day MA 51.7%, Lag+Ridge 51.1%. Last value best MAE/RMSE.  
+- **ETC-USD:** 7-day MA and Lag+Ridge best direction (55.3%, 53.2%); LSTM 45.6% (below random).  
+
+Directional predictability and which model wins vary by asset. Last value remains best on MAE/RMSE. On XRP the LSTM has the best directional accuracy; on ETC it is worst. LSTM does not consistently beat simpler models across assets.
 
 ---
 
