@@ -95,11 +95,11 @@ Goal: finish in **3 weeks**, use **Week 4 as buffer** before the due date.
 | 5.1 Permutation importance | On best lag/tree model. Plot and short interpretation. | |
 | 5.2 SHAP or PDP/ICE | One of: SHAP, partial dependence, or ICE. Interpret 1–2 important features. | |
 | 5.3 Error analysis | Finalize residual plots and “where the model performs poorly.” | |
-| 5.4 Report | Intro, data, methods, baselines, lag model, LSTM, ablation, interpretability, error analysis, conclusion. | |
-| 5.5 Slides | Aligned with report; assign slides per person. | |
-| 5.6 Code cleanup | One notebook or script that reproduces all results; README with run instructions. | |
+| 5.4 Report | Intro, data, methods, baselines, lag model, LSTM, ablation, interpretability, error analysis, conclusion. | Done (REPORT.md) |
+| 5.5 Slides | Aligned with report; assign slides per person. | Done (Crypto_Price_Prediction_Slides.pptx) |
+| 5.6 Code cleanup | One notebook or script that reproduces all results; README with run instructions. | Done (v6 notebook, README) |
 
-**Deliverable:** Report, slides, reproducible code.
+**Deliverable:** Report, slides, reproducible code. ✓
 
 ---
 
@@ -108,13 +108,13 @@ Goal: finish in **3 weeks**, use **Week 4 as buffer** before the due date.
 - [x] **DONE!** Baseline + at least two improved models (e.g. lag model, LSTM)
 - [x] **DONE!** Time-based split only; no shuffle
 - [x] **DONE!** ColumnTransformer + Pipeline
-- [ ] RandomizedSearchCV (or Bayesian) with time-series CV
-- [ ] Error analysis: residual plots + where model fails
-- [ ] Interpretability: permutation importance + one of SHAP / PDP / ICE
+- [x] RandomizedSearchCV (or Bayesian) with time-series CV
+- [x] Error analysis: residual plots + where model fails
+- [x] Interpretability: permutation importance + one of SHAP / PDP / ICE
 - [x] **DONE!** Two baselines (last value, moving average)
-- [ ] Rolling backtest
+- [x] Rolling backtest
 - [x] **DONE!** MAE or RMSE + directional accuracy
 - [x] **DONE!** LSTM compared to baselines and lag model
 - [x] **DONE!** Ablation with extra/derived features (volume, rolling volatility in AllInOne v3)
-- [ ] Report + slides + reproducible code
+- [x] Report + slides + reproducible code
 

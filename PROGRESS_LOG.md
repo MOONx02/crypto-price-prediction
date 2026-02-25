@@ -126,11 +126,11 @@ Update this file as you complete tasks. See [TEAM_PLAN.md](TEAM_PLAN.md) for ful
 - [x] **5.1** Permutation importance on best lag/tree model; plot and short interpretation
 - [x] **5.2** SHAP or PDP/ICE: interpret 1–2 important features
 - [x] **5.3** Error analysis: finalize residual plots and "where the model performs poorly"
-- [ ] **5.4** Report: intro, data, methods, baselines, lag model, LSTM, ablation, interpretability, error analysis, conclusion
-- [ ] **5.5** Slides: aligned with report; assign slides per person
-- [ ] **5.6** Code cleanup: one notebook or script that reproduces all results; README with run instructions
+- [x] **5.4** Report: intro, data, methods, baselines, lag model, LSTM, ablation, interpretability, error analysis, conclusion (draft: REPORT.md)
+- [x] **5.5** Slides: aligned with report (Crypto_Price_Prediction_Slides.pptx; completed by team)
+- [x] **5.6** Code cleanup: one notebook reproduces all results; README with run instructions (GitHub page finalized)
 
-**Deliverable:** Report, slides, reproducible code.
+**Deliverable:** Report, slides, reproducible code. ✓
 
 ---
 
@@ -146,7 +146,7 @@ Update this file as you complete tasks. See [TEAM_PLAN.md](TEAM_PLAN.md) for ful
 - [x] Ablation with extra/derived features (volume, volatility in v3)
 - [x] Error analysis: residual plots + where model fails
 - [x] Interpretability: permutation importance + one of SHAP / PDP / ICE
-- [ ] Report + slides + reproducible code
+- [x] Report + slides + reproducible code
 
 ---
 
@@ -169,4 +169,10 @@ Update this file as you complete tasks. See [TEAM_PLAN.md](TEAM_PLAN.md) for ful
 
 ---
 
-*Last updated: 2026-02-25 (v6 results, permutation interpretation fix, push)*
+### GitHub page and deliverables (2026-02-25)
+- **README.md** updated as main GitHub landing page: quick start (Colab + local), deliverables table (report, slides, code), repo structure, what the notebook does, results-at-a-glance, course requirements checklist.
+- **Slides** completed by team (Crypto_Price_Prediction_Slides.pptx in repo). Phase 5.5 and 5.6 marked done; report + slides + reproducible code checklist complete.
+
+---
+
+*Last updated: 2026-02-25 (GitHub page, slides done, deliverables complete)*
