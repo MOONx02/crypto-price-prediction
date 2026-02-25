@@ -67,6 +67,15 @@ Update this file as you complete tasks. See [TEAM_PLAN.md](TEAM_PLAN.md) for ful
 - **Renamed in archive:** `Copy_of_Crypto_Colab_AllInOne.ipynb` → `Crypto_Colab_AllInOne_legacy.ipynb`.
 - **Saved in archive:** Colab run (51% Dir.Acc) as `archive/Crypto_Colab_AllInOne_v1_colab_run.ipynb`. Single working notebook: `notebooks/Crypto_Colab_AllInOne_v1.ipynb`.
 
+### Rolling backtest + TimeSeriesSplit + residuals (2026-02-25)
+- **AllInOne v4** (main BTC): **3b** Rolling backtest for Lag+Ridge (train on past only, predict next day; uses lags + log_volume + volatility_14). **3c** TimeSeriesSplit(5) + RandomizedSearchCV over Ridge alpha (logspace -2..2), scoring neg MAE. **3d** Best model on test set, residual histogram, predicted vs actual scatter, short error discussion (tails in volatile regimes). v3 moved to `notebooks/archive/`; working notebook is now `Crypto_Colab_AllInOne_v4.ipynb`.
+
+### Asset as variation, not version (2026-02-25)
+- **One notebook, one version.** v4 has config cell `ASSET = "BTC-USD"` (or ETH-USD, XRP-USD, ETC-USD). Cache and download use `ASSET`; no separate file per coin. v4_ETH, v5_XRP, v6_ETC-test moved to `archive/`. README: version = pipeline only; asset = variation.
+
+### Colab run — BTC (v4) (2026-02-25)
+- Ran v4 on Colab with **BTC-USD**. **Results:** Last value MAE 1594, RMSE 2220 (best on error); 7-day MA 2677 / 3560, Dir.Acc 49.4%; Lag+Ridge 2332 / 3067, Dir.Acc 49.6%; **LSTM 1710 / 2295, Dir.Acc 50.5%** (only model above 50% directional). Conclusion: last value best MAE/RMSE; LSTM slight directional edge on BTC.
+
 ---
 
 ## What we need to do
@@ -74,11 +83,11 @@ Update this file as you complete tasks. See [TEAM_PLAN.md](TEAM_PLAN.md) for ful
 ### Phase 2: Lag-feature model and rolling backtest (Week 2)
 - [x] **2.1** Feature design: lag features (e.g. price lags 1–7 or 1–30), optionally log returns; document in notebook
 - [x] **2.2** Preprocessing + Pipeline: ColumnTransformer (e.g. StandardScaler) + Pipeline with regression (e.g. Ridge or Gradient Boosting)
-- [ ] **2.3** Rolling backtest: train on past only, predict next day, roll forward; no future leakage
-- [ ] **2.4** Time-series CV: TimeSeriesSplit + RandomizedSearchCV; document param grid
-- [ ] **2.5** Evaluation: rolling backtest metrics (MAE, RMSE, dir. acc.), residual plots, short error discussion
+- [x] **2.3** Rolling backtest: train on past only, predict next day, roll forward; no future leakage
+- [x] **2.4** Time-series CV: TimeSeriesSplit + RandomizedSearchCV; document param grid
+- [x] **2.5** Evaluation: rolling backtest metrics (MAE, RMSE, dir. acc.), residual plots, short error discussion
 
-**Deliverable:** Lag-feature model with pipeline and rolling backtest; metrics and residual analysis. *Note: Simple lag+Ridge with pipeline is in AllInOne; rolling backtest and time-series CV still to integrate.*
+**Deliverable:** Lag-feature model with pipeline and rolling backtest; metrics and residual analysis. ✅ Integrated in `Crypto_Colab_AllInOne_v4.ipynb` (sections 3b–3d).
 
 ---
 
@@ -120,14 +129,14 @@ Update this file as you complete tasks. See [TEAM_PLAN.md](TEAM_PLAN.md) for ful
 - [x] MAE / RMSE + directional accuracy
 - [x] Baseline + at least two improved models (lag model, LSTM)
 - [x] ColumnTransformer + Pipeline
-- [ ] RandomizedSearchCV (or Bayesian) with time-series CV
-- [ ] Rolling backtest
+- [x] RandomizedSearchCV (or Bayesian) with time-series CV
+- [x] Rolling backtest
 - [x] LSTM compared to baselines and lag model
 - [x] Ablation with extra/derived features (volume, volatility in v3)
-- [ ] Error analysis: residual plots + where model fails
+- [x] Error analysis: residual plots + where model fails
 - [ ] Interpretability: permutation importance + one of SHAP / PDP / ICE
 - [ ] Report + slides + reproducible code
 
 ---
 
-*Last updated: 2026-02-22 (ETC v6: 7-day MA 55.3% Dir.Acc.)*
+*Last updated: 2026-02-25 (BTC v4 run logged: last value best MAE/RMSE, LSTM 50.5% Dir.Acc)*
