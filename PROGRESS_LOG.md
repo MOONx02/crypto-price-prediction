@@ -123,9 +123,9 @@ Update this file as you complete tasks. See [TEAM_PLAN.md](TEAM_PLAN.md) for ful
 ---
 
 ### Phase 5: Interpretability, report, and presentation (End Week 3 / Week 4)
-- [ ] **5.1** Permutation importance on best lag/tree model; plot and short interpretation
-- [ ] **5.2** SHAP or PDP/ICE: interpret 1–2 important features
-- [ ] **5.3** Error analysis: finalize residual plots and "where the model performs poorly"
+- [x] **5.1** Permutation importance on best lag/tree model; plot and short interpretation
+- [x] **5.2** SHAP or PDP/ICE: interpret 1–2 important features
+- [x] **5.3** Error analysis: finalize residual plots and "where the model performs poorly"
 - [ ] **5.4** Report: intro, data, methods, baselines, lag model, LSTM, ablation, interpretability, error analysis, conclusion
 - [ ] **5.5** Slides: aligned with report; assign slides per person
 - [ ] **5.6** Code cleanup: one notebook or script that reproduces all results; README with run instructions
@@ -145,7 +145,7 @@ Update this file as you complete tasks. See [TEAM_PLAN.md](TEAM_PLAN.md) for ful
 - [x] LSTM compared to baselines and lag model
 - [x] Ablation with extra/derived features (volume, volatility in v3)
 - [x] Error analysis: residual plots + where model fails
-- [ ] Interpretability: permutation importance + one of SHAP / PDP / ICE
+- [x] Interpretability: permutation importance + one of SHAP / PDP / ICE
 - [ ] Report + slides + reproducible code
 
 ---
@@ -157,4 +157,16 @@ Update this file as you complete tasks. See [TEAM_PLAN.md](TEAM_PLAN.md) for ful
 
 ---
 
-*Last updated: 2026-02-25 (phase conclusions added for Phases 1–4)*
+### Phase 5 interpretability and error analysis (2026-02-25)
+- **5.1** Section 4a added: permutation importance on best Lag+Ridge (sklearn.inspection.permutation_importance), horizontal bar plot of feature names (lag_1..lag_30, log_volume, volatility_14), short interpretation (recent lags dominate; consistent with ablation).
+- **5.2** PDP for lag_1 and log_volume; ICE for lag_1 (sampled curves). Interpretation: PDP for lag_1 roughly linear; log_volume flatter; ICE shows homogeneous effect.
+- **5.3** Section 3d expanded: 2×2 residual plots (histogram, predicted vs actual, residuals over time, |residual| vs volatility_14); finalized "where the model performs poorly" (high-volatility periods, large moves; model is smoothed extrapolation of recent lags).
+- **Version bump:** v5 moved to `notebooks/archive/`; current notebook is **Crypto_Colab_AllInOne_v6.ipynb** (Phase 5 interpretability included). README version history updated.
+
+### v6 results and interpretation fix (2026-02-25)
+- **Colab run (ETC-USD):** Last value best MAE/RMSE (0.575 / 0.871); 7-day MA best Dir.Acc (55.3%); Lag+Ridge 53.2%; LSTM 45.6% (below random). On ETC, 7-day MA and Lag+Ridge beat LSTM on direction.
+- **Permutation importance:** Actual top 3 were log_volume, volatility_14, lag_15 (not lag_1/lag_2). Interpretation text in notebook was hardcoded and wrong for this run. Fixed: interpretation is now data-driven (uses actual top-3 names; different message when volume/volatility are in top 3).
+
+---
+
+*Last updated: 2026-02-25 (v6 results, permutation interpretation fix, push)*
