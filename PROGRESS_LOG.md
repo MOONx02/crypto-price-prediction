@@ -76,6 +76,9 @@ Update this file as you complete tasks. See [TEAM_PLAN.md](TEAM_PLAN.md) for ful
 ### Colab run — BTC (v4) (2026-02-25)
 - Ran v4 on Colab with **BTC-USD**. **Results:** Last value MAE 1594, RMSE 2220 (best on error); 7-day MA 2677 / 3560, Dir.Acc 49.4%; Lag+Ridge 2332 / 3067, Dir.Acc 49.6%; **LSTM 1710 / 2295, Dir.Acc 50.5%** (only model above 50% directional). Conclusion: last value best MAE/RMSE; LSTM slight directional edge on BTC.
 
+### Phase 4 ablation → v5 (2026-02-25)
+- **v5 created:** Phase 4 ablation (Section 4) added; notebook promoted to **v5**. `Crypto_Colab_AllInOne_v5.ipynb` is now the current notebook. v4 moved to `notebooks/archive/`. Ablation compares Lag+Ridge: (1) lags only, (2) lags + volume, (3) lags + volatility, (4) all; reports MAE, RMSE, Dir.Acc and short summary for report.
+
 ---
 
 ## What we need to do
@@ -102,12 +105,12 @@ Update this file as you complete tasks. See [TEAM_PLAN.md](TEAM_PLAN.md) for ful
 ---
 
 ### Phase 4: Features and ablation (Week 3)
-- [ ] **4.1** Extra features: define 2–3 (volume, rolling volatility, simple indicator e.g. RSI or MA crossover); document formulas
-- [ ] **4.2** Feature implementation: add to pipeline; rolling backtest uses only past data
-- [ ] **4.3** Ablation study: (1) lags only, (2) lags + volume, (3) lags + volatility, (4) all; report MAE/RMSE/dir. acc.
-- [ ] **4.4** Ablation summary: short conclusion for report (which features help)
+- [x] **4.1** Extra features: define 2–3 (volume, rolling volatility, simple indicator e.g. RSI or MA crossover); document formulas
+- [x] **4.2** Feature implementation: add to pipeline; rolling backtest uses only past data
+- [x] **4.3** Ablation study: (1) lags only, (2) lags + volume, (3) lags + volatility, (4) all; report MAE/RMSE/dir. acc.
+- [ ] **4.4** Ablation summary: short conclusion for report (which features help) — fill in after Colab run
 
-**Deliverable:** Ablation results and "what helps" for the report.
+**Deliverable:** Ablation results and "what helps" for the report. ✅ Section 4 in v4 runs ablation; summarize in report after viewing results.
 
 ---
 
@@ -139,4 +142,11 @@ Update this file as you complete tasks. See [TEAM_PLAN.md](TEAM_PLAN.md) for ful
 
 ---
 
-*Last updated: 2026-02-25 (BTC v4 run logged: last value best MAE/RMSE, LSTM 50.5% Dir.Acc)*
+### v5 fixes (2026-02-25)
+- **Comparison table:** Lag+Ridge row now uses **best-from-CV** (`metrics_best` from Section 3d) instead of fixed-alpha `m_lag`, so table matches residual evaluation. Label: "Lag+Ridge (best CV)".
+- **Duplicate 7-day MA removed:** Inline "7-day MA forecast from end of series" cell (after Section 2) removed; Section 7 is the single place for future 7-day MA.
+- **Last-value Dir.Acc:** Comment added in baselines cell: "Last value predicts no change, so Dir.Acc is not meaningful (often 0)."
+
+---
+
+*Last updated: 2026-02-25 (v5 fixes: best CV in table, duplicate MA removed, last-value comment)*
