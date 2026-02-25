@@ -90,7 +90,7 @@ Update this file as you complete tasks. See [TEAM_PLAN.md](TEAM_PLAN.md) for ful
 - [x] **2.4** Time-series CV: TimeSeriesSplit + RandomizedSearchCV; document param grid
 - [x] **2.5** Evaluation: rolling backtest metrics (MAE, RMSE, dir. acc.), residual plots, short error discussion
 
-**Deliverable:** Lag-feature model with pipeline and rolling backtest; metrics and residual analysis. ✅ Integrated in `Crypto_Colab_AllInOne_v4.ipynb` (sections 3b–3d).
+**Deliverable:** Lag-feature model with pipeline and rolling backtest; metrics and residual analysis. Integrated in `Crypto_Colab_AllInOne_v4.ipynb` (sections 3b–3d).
 
 ---
 
@@ -100,7 +100,7 @@ Update this file as you complete tasks. See [TEAM_PLAN.md](TEAM_PLAN.md) for ful
 - [x] **3.3** Fair comparison: same test period and metrics as baselines and lag model
 - [x] **3.4** Results table: Baselines vs Lag vs LSTM; short summary of which model wins on which metric
 
-**Deliverable:** LSTM trained and evaluated; comparison table and short write-up. ✅ (In AllInOne.)
+**Deliverable:** LSTM trained and evaluated; comparison table and short write-up. (In AllInOne.)
 
 ---
 
@@ -108,9 +108,11 @@ Update this file as you complete tasks. See [TEAM_PLAN.md](TEAM_PLAN.md) for ful
 - [x] **4.1** Extra features: define 2–3 (volume, rolling volatility, simple indicator e.g. RSI or MA crossover); document formulas
 - [x] **4.2** Feature implementation: add to pipeline; rolling backtest uses only past data
 - [x] **4.3** Ablation study: (1) lags only, (2) lags + volume, (3) lags + volatility, (4) all; report MAE/RMSE/dir. acc.
-- [ ] **4.4** Ablation summary: short conclusion for report (which features help) — fill in after Colab run
+- [x] **4.4** Ablation summary: short conclusion for report (which features help)
 
-**Deliverable:** Ablation results and "what helps" for the report. ✅ Section 4 in v4 runs ablation; summarize in report after viewing results.
+**Deliverable:** Ablation results and "what helps" for the report. Section 4 in v5 runs ablation.
+
+**Ablation conclusion (for report):** On ETC-USD (and similar runs), **volume** helps directional accuracy most (e.g. lags+volume ~54% Dir.Acc vs lags-only ~52%); **volatility** adds a smaller gain. For MAE/RMSE, **lags-only is best**—adding volume or volatility slightly increases point-forecast error. So the trade-off is: extra features improve *direction* (which feature helps) at a small cost to *magnitude* (MAE/RMSE).
 
 ---
 
@@ -149,4 +151,4 @@ Update this file as you complete tasks. See [TEAM_PLAN.md](TEAM_PLAN.md) for ful
 
 ---
 
-*Last updated: 2026-02-25 (v5 fixes: best CV in table, duplicate MA removed, last-value comment)*
+*Last updated: 2026-02-25 (4.4 ablation summary filled in for report)*
