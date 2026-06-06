@@ -55,9 +55,9 @@ def main():
         if "# Crypto Price Prediction" in s and "v8" in s and c["cell_type"] == "markdown":
             set_src(c, """# Crypto Price Prediction — v9
 
-**Machine Learning and Data Mining** — ECPS 211 Winter 2026
+**Modeling baseline notebook**
 
-**v9 (simplified):** Meets course rubric with minimal complexity. Two baselines (last value, 7-day MA); **Ridge** (30 return lags + log_volume + volatility_14, Optuna-tuned); **LSTM** (64→32 units, dropout, early stopping). **4-group ablation** (lags → +volume → +volatility → all). **Interpretability** (permutation importance + PDP/ICE on Ridge). **Error analysis** (residuals + where model fails). **Expanding-window** evaluation (Ridge). No XGBoost/ensemble/stacking/classifier.
+**v9 (simplified):** Compact baseline pipeline. Two baselines (last value, 7-day MA); **Ridge** (30 return lags + log_volume + volatility_14, Optuna-tuned); **LSTM** (64→32 units, dropout, early stopping). **4-group ablation** (lags → +volume → +volatility → all). **Interpretability** (permutation importance + PDP/ICE on Ridge). **Error analysis** (residuals + where model fails). **Expanding-window** evaluation (Ridge). No XGBoost/ensemble/stacking/classifier.
 
 Set `ASSET` below and **Runtime → Run all**.""")
         elif "!pip install" in s and "xgboost" in s:
@@ -326,7 +326,7 @@ plt.legend(); plt.grid(alpha=0.3); plt.tight_layout(); plt.show()""")
         elif "## 14. Summary" in s and "v8 Improvements" in s:
             set_src(c, """## 13. Summary (v9)
 
-**v9** satisfies the course rubric with minimal complexity: two baselines, Ridge (lag + volume + volatility), LSTM, 4-group ablation, permutation importance + PDP/ICE (Ridge), error analysis (residuals), expanding-window evaluation (Ridge). No XGBoost, ensemble, stacking, or classifier.
+**v9** keeps a compact baseline pipeline: two baselines, Ridge (lag + volume + volatility), LSTM, 4-group ablation, permutation importance + PDP/ICE (Ridge), error analysis (residuals), expanding-window evaluation (Ridge). No XGBoost, ensemble, stacking, or classifier.
 
 **Key findings:** See comparison table (Section 7), expanding-window (Section 8), ablation (Section 9), interpretability (Section 10), and error analysis (Section 11).""")
         elif "Sanity checks" in s and "pred_xgb_test" in s:

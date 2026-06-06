@@ -1,6 +1,6 @@
 # Crypto Price Prediction with Rolling Backtesting and Baselines
 
-**Machine Learning and Data Mining** — WINTER 2026
+**Project planning document**
 
 ---
 
@@ -103,7 +103,7 @@ Goal: finish in **3 weeks**, use **Week 4 as buffer** before the due date.
 
 ---
 
-## Course requirements checklist
+## Project requirements checklist
 
 - [x] **DONE!** Baseline + at least two improved models (e.g. lag model, LSTM)
 - [x] **DONE!** Time-based split only; no shuffle

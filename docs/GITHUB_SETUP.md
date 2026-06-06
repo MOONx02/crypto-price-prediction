@@ -1,6 +1,6 @@
 # Crypto Price Prediction with Rolling Backtesting and Baselines
 
-**Machine Learning and Data Mining** — WINTER 2026
+**Repository setup guide**
 
 ---
 
@@ -11,7 +11,7 @@ Do this once to put this project on GitHub.
 ## 1. Create the repo on GitHub
 
 1. Go to [github.com/new](https://github.com/new).
-2. Repository name: e.g. `crypto-price-prediction` or `ecps211-final-project`.
+2. Repository name: e.g. `crypto-price-prediction`.
 3. Choose **Private** (or Public if you prefer).
 4. Do **not** add a README, .gitignore, or license (we already have them).
 5. Click **Create repository**.
@@ -21,7 +21,7 @@ Do this once to put this project on GitHub.
 In a terminal, open the project folder and run:
 
 ```bash
-cd "/Users/moon/Library/Mobile Documents/com~apple~CloudDocs/WINTER2025/211/crypto-price-prediction"
+cd /path/to/crypto-price-prediction
 
 git init
 git add .

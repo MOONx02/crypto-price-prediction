@@ -1,5 +1,9 @@
 # Notebooks
 
+## Current final notebook
+
+- Portfolio-ready final run notebook: `final/Crypto_Prediction_EC_Assignment.ipynb`
+
 ## AllInOne versioning
 
 - **Version = pipeline only.** The current extra-credit working notebook is `Crypto_Colab_EC_v1.ipynb` (initialized from the v9 baseline and used for extension work).

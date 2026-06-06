@@ -1,6 +1,6 @@
 # Model Improvement Assessment
 
-**Crypto Price Prediction — ECPS 211**
+**Crypto Price Prediction**
 **Date:** March 2, 2026
 
 ---

@@ -1,8 +1,8 @@
-# Extra Credit Final Report - Crypto Price Prediction (ECPS 211)
+# Final Report - Crypto Price Prediction
 
 ## 1) Purpose and Scope
 
-This report summarizes the extra-credit work proposed in `extra_credit_proposal.md` and documents findings from `EC_FINDINGS_LOG.md`. The goal was to investigate whether targeted model and feature upgrades could address known weaknesses in the v9 baseline system:
+This report summarizes the model-extension work proposed in `proposals/model_extension_proposal.md` and documents findings from `EC_FINDINGS_LOG.md`. The goal was to investigate whether targeted model and feature upgrades could address known weaknesses in the v9 baseline system:
 
 - LSTM collapse toward near-zero predictions under MSE on heavy-tailed returns.
 - Ridge inability to capture nonlinear interactions (especially volatility-volume effects).

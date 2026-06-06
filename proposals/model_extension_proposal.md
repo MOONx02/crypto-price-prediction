@@ -1,4 +1,4 @@
-# Extra Credit Proposal — Crypto Price Prediction (ECPS 211)
+# Model Extension Proposal — Crypto Price Prediction
 
 ## What We Found (v9)
 
