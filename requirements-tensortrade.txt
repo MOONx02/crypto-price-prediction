@@ -1,0 +1,13 @@
+# Optional: TensorTrade integration (RL backtest / agent training)
+# Install after main requirements.txt. Use Python 3.11 or 3.12.
+
+# Core: numpy>=2 for jax/opencv/shap. On Colab use pandas==2.2.2 (google-colab requires it).
+numpy>=2
+pandas==2.2.2
+gymnasium>=0.28.1
+
+# TensorTrade: install latest from GitHub (PyPI 1.0.3 is outdated)
+# Run: pip install git+https://github.com/tensortrade-org/tensortrade.git
+
+# Optional: for training an RL agent with TensorTrade (not required for backtest-only)
+# ray[default,rllib]>=2.10.0,<3.0

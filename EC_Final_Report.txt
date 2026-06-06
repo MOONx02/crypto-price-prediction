@@ -1,0 +1,65 @@
+Tae Moon
+Crypto Price Prediction: Extra Credit Final Report
+
+1. Introduction
+This report summarizes the implementation and findings of the extra-credit extensions for the crypto price prediction project. The objective was to address three baseline limitations:
+- LSTM instability/mean-collapse behavior
+- Ridge linearity ceiling and inability to capture conditional interactions
+- Non-local lag importance in the time series signal
+
+All models were evaluated on the same held-out test set using directional accuracy, Sharpe ratio, and cumulative P&L.
+
+2. Extensions Implemented
+- Extension 1: Huber Loss + Attention LSTM
+- Extension 2: XGBoost + technical indicators (RSI, MACD signal, Bollinger width, vol_x_volume)
+- Extension 3: Temporal Fusion Transformer (TFT)
+
+The notebook also includes threshold tuning, cost sensitivity analysis, and a proposal compliance checklist.
+
+3. Final Full-Coverage Run Results
+Run mode: SAFE_MODE=False, RUN_TFT=True, RUN_LSTM_OPTUNA=True
+
+Model | Dir. Acc | Sharpe | P&L
+Ridge_v9_baseline | 0.5266 | 1.1194 | +1.1403
+XGBoost_raw | 0.5312 | 0.3839 | +0.3922
+XGBoost_tuned | 0.5312 | 0.8185 | +0.6181
+Huber_Attention_LSTM | 0.5012 | -0.0664 | -0.0679
+TFT | 0.5219 | 0.3693 | +0.3777
+LSTM_v9_baseline | 0.5173 | 0.6752 | +0.6898
+
+Compliance checklist: 7/8 PASS
+- FAIL item: XGBoost Sharpe (0.82) < Ridge Sharpe (1.12)
+
+4. Findings by Proposal Topic
+4.1 Extension 2 (XGBoost + indicators) and nonlinear interactions
+- XGBoost variants achieved the highest directional accuracy in this run (0.5312), slightly above Ridge (0.5266).
+- This supports the proposal claim that nonlinear models can improve directional signal capture.
+- However, directional improvement did not produce the best Sharpe/P&L in this run.
+
+4.2 Extension 1 (Huber + Attention LSTM) and LSTM stabilization
+- In this run, Huber+Attention did not outperform baseline LSTM or Ridge.
+- Huber_Attention_LSTM posted negative Sharpe and P&L (-0.0664, -0.0679).
+- Therefore, this extension was not successful under the current runtime/training configuration.
+
+4.3 Extension 3 (TFT) and non-local temporal modeling
+- TFT executed successfully and produced positive Sharpe/P&L (0.3693, +0.3777).
+- It remained below Ridge and XGBoost_tuned on trading metrics.
+- This indicates partial viability, but not top performance in the present compute/tuning setting.
+
+4.4 Objective mismatch: direction vs trading quality
+- Confirmed again: best directional model and best trading model are not the same.
+- XGBoost leads direction; Ridge leads Sharpe/P&L.
+- Model selection should prioritize the task objective (trading utility), not direction alone.
+
+5. Key Discoveries
+1) Directional accuracy and trading performance diverge.
+2) XGBoost provided the best directional accuracy in this run.
+3) Ridge remained the strongest trading benchmark (best Sharpe/P&L).
+4) Huber+Attention LSTM was not robust in this run despite architectural intent.
+5) TFT is workable but still secondary under current CPU-constrained setup.
+6) Threshold tuning can materially change rankings, so policy calibration must be validated carefully.
+
+6. Conclusion
+All three proposed extensions were implemented and executed in the final notebook, with 7/8 compliance items passing. The most reliable practical result in this run is that Ridge remains the best trading model, while XGBoost remains direction-competitive and interpretable for nonlinear effects. Sequence-model extensions (Huber+Attention, TFT) did not become top performers under the current setup.
+
+The main methodological lesson is objective alignment: in trading tasks, final selection should be based on Sharpe/P&L under costs, not directional accuracy alone.
